@@ -8,6 +8,8 @@
         <module>accept</module>
         <module>common</module>
         <module>db</module>
+        <module>process</module>
+        <module>webservice</module>
     </modules>
 
     <parent>
@@ -32,6 +34,7 @@
     </properties>
 
     <dependencies>
+
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
