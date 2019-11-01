@@ -7,6 +7,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Component;
 
 import java.net.InetAddress;
@@ -14,7 +15,7 @@ import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * @author huixing
- * @description 服務端處理
+ * @description 服务端处理
  * @date 2019/10/30
  */
 @Component
@@ -23,8 +24,9 @@ import java.util.concurrent.ConcurrentHashMap;
 public class ServerHandler extends SimpleChannelInboundHandler<String> {
     private static final Logger log = LoggerFactory.getLogger(ServerHandler.class);
 
-    @Autowired
-    private WeedFSService weedFSService;
+//    @Autowired
+//    private WeedFSService weedFSService;
+
 
     private ConcurrentHashMap<String, String> cameraData = new ConcurrentHashMap<>();
 
@@ -40,7 +42,7 @@ public class ServerHandler extends SimpleChannelInboundHandler<String> {
         //  log.info("client long id:"+clientIdToLong);
         String clientIdToShort= ctx.channel().id().asShortText();
         //  log.info("client short id:"+clientIdToShort);
-
+       // kafkaSender.send("msg: " + msg);
         if (cameraData.containsKey(clientIdToShort)){
             cameraData.replace(clientIdToShort, cameraData.get(clientIdToShort) + msg);
         }else {
@@ -57,7 +59,7 @@ public class ServerHandler extends SimpleChannelInboundHandler<String> {
 //            ctx.channel().close();
 //        }else{
 //            //send to client
-        ctx.channel().writeAndFlush("Yoru msg is:"+msg);
+//        ctx.channel().writeAndFlush("Yoru msg is:"+msg);
 //
 //        }
     }
@@ -82,10 +84,12 @@ public class ServerHandler extends SimpleChannelInboundHandler<String> {
     @Override
     public void channelInactive(ChannelHandlerContext ctx) throws Exception {
         log.info("\nChannel is disconnected");
-//        String data = cameraData.get(ctx.channel().id().asShortText());
+        //kafkaSender.send("msg: " + msg);
+        String data = cameraData.get(ctx.channel().id().asShortText());
 //        log.info(data);
+        kafkaSender.send(data);
         // 放入Kafka
-//        System.out.println(cameraData.get(ctx.channel().id().asShortText()));
+        System.out.println(cameraData.get(ctx.channel().id().asShortText()));
         super.channelInactive(ctx);
     }
 

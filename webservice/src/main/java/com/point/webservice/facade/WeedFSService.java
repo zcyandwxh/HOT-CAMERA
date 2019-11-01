@@ -1,4 +1,4 @@
-//package com.point.accept.service;
+//package com.point.webservice.facade;
 //
 //import com.point.common.data.StorageConfig;
 //import com.point.common.storage.weed.WeedStorage;

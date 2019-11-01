@@ -38,9 +38,9 @@ public class StringProtocolInitalizer extends ChannelInitializer<SocketChannel> 
     @Override
     protected void initChannel(SocketChannel ch) throws Exception {
         ChannelPipeline pipeline = ch.pipeline();
-        pipeline.addLast(new FixedLengthFrameDecoder(20));
+//        pipeline.addLast(new FixedLengthFrameDecoder(20));
         pipeline.addLast("decoder", stringDecoder);
-        pipeline.addLast(new FixedLengthFrameEncoder(20));
+//        pipeline.addLast(new FixedLengthFrameEncoder(20));
         pipeline.addLast("handler", serverHandler);
         pipeline.addLast("encoder", stringEncoder);
     }
