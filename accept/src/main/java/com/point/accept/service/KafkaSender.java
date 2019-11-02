@@ -44,8 +44,6 @@ public class KafkaSender {
                 log.info("照片数据放入kafka成功");
             }
         });
-
-//                kafkaTemplate.send("zhisheng", gson.toJson(accptBean));
     }
 }
 

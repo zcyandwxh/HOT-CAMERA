@@ -1,0 +1,11 @@
+-------------------------------------------------------------------------------
+Test set: com.point.webserviceTest.WeedFSTest
+-------------------------------------------------------------------------------
+Tests run: 1, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 2.626 s <<< FAILURE! - in com.point.webserviceTest.WeedFSTest
+testWeedFS(com.point.webserviceTest.WeedFSTest)  Time elapsed: 0.001 s  <<< ERROR!
+java.lang.IllegalStateException: Failed to load ApplicationContext
+Caused by: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'sysParamManager': Unsatisfied dependency expressed through field 'dbAccessor'; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'RDBAccessor' defined in URL [jar:file:/Users/huixing/repository/com/point/common/1.0-SNAPSHOT/common-1.0-SNAPSHOT.jar!/com/point/common/database/accessor/RDBAccessor.class]: Bean instantiation via constructor failed; nested exception is org.springframework.beans.BeanInstantiationException: Failed to instantiate [com.point.common.database.accessor.RDBAccessor]: Constructor threw exception; nested exception is java.lang.NullPointerException
+Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'RDBAccessor' defined in URL [jar:file:/Users/huixing/repository/com/point/common/1.0-SNAPSHOT/common-1.0-SNAPSHOT.jar!/com/point/common/database/accessor/RDBAccessor.class]: Bean instantiation via constructor failed; nested exception is org.springframework.beans.BeanInstantiationException: Failed to instantiate [com.point.common.database.accessor.RDBAccessor]: Constructor threw exception; nested exception is java.lang.NullPointerException
+Caused by: org.springframework.beans.BeanInstantiationException: Failed to instantiate [com.point.common.database.accessor.RDBAccessor]: Constructor threw exception; nested exception is java.lang.NullPointerException
+Caused by: java.lang.NullPointerException
+

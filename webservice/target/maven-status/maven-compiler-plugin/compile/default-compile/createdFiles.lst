@@ -1,0 +1,4 @@
+com/point/webservice/config/KafkaConsumerConfig.class
+com/point/webservice/facade/KafkaReceiverService.class
+com/point/webservice/facade/WeedFSService.class
+com/point/webservice/WebServiceApplication.class

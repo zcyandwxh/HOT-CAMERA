@@ -2,6 +2,7 @@ package com.point.common.data;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import org.springframework.beans.factory.annotation.Value;
 
 /**
  * 文件存储相关配置
@@ -13,6 +14,7 @@ public class StorageConfig {
     /**
      * 通道ID
      */
+    @Value("${}")
     private String chanelId;
 
     /**
