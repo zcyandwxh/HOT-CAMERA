@@ -1,4 +1,4 @@
-package com.point.accept.service;
+package com.point.accept.service.impl;
 
 /**
  * @author huixing

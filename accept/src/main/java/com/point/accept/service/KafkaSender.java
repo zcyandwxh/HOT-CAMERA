@@ -14,36 +14,13 @@ import org.springframework.util.concurrent.ListenableFutureCallback;
 
 /**
  * @author huixing
- * @description kafka生产者
+ * @description kafka生产者接口
  * @date 2019/10/29
  */
-@Component
-@Slf4j
-public class KafkaSender {
+public interface KafkaSender {
 
-    @Autowired
-    private KafkaTemplate<String, String> kafkaTemplate;
-
-    private Gson gson = new GsonBuilder().create();
-
-    //发送消息方法
 //    @Async
-    public void send(String msg) {
-        log.info("+++++++++++++++++++++  message = {}", msg);
+    void send(String msg);
 
-        ListenableFuture<SendResult<String, String>> feature = kafkaTemplate.send("picTopic", msg);
-
-        feature.addCallback(new ListenableFutureCallback<SendResult<String, String>>() {
-            @Override
-            public void onFailure(Throwable throwable) {
-                log.info("照片数据放入kafka失败");
-            }
-
-            @Override
-            public void onSuccess(SendResult<String, String> stringStringSendResult) {
-                log.info("照片数据放入kafka成功");
-            }
-        });
-    }
 }
 

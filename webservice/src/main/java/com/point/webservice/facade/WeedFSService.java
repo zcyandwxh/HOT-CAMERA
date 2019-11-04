@@ -15,62 +15,32 @@ import java.io.InputStream;
  * @description weedFS操作服务处理
  * @date 2019/10/29
  */
-@Component
-public class WeedFSService {
-
-
-    /**
-     * 文件系统工具类
-     */
-    @Autowired
-    private WeedStorage weedStorage;
+public interface WeedFSService {
 
     /**
      * 圖片存儲方法
      *
      * @param picInputStream 圖片輸入流
      */
-    public BizResult<String> storagePic(InputStream picInputStream) {
-        int fileName = RandomNameUtil.getNum(0, 100000000);
-        String url = weedStorage.store(picInputStream, "", fileName + "");
-
-        // TODO 审核数据库之后进行入库操作
-
-        return BizResult.create(url);
-    }
+    BizResult<String> storagePic(InputStream picInputStream);
 
     // TODO 优化配置
 
     /**
      * 进行文件系统初始化操作
      */
-    public void init() throws Exception{
-        StorageConfig storageConfig = new StorageConfig();
-        storageConfig.setIpAddr("192.168.95.101");
-        storageConfig.setPort(9333);
-        weedStorage.config(storageConfig);
-    }
+    void init() throws Exception;
 
     /**
      * 获取图片
      * @param fileId 文件ID
      * @return
      */
-    public BizResult<InputStream> getPic(String fileId){
-
-        InputStream picInputStream = weedStorage.get(fileId);
-
-        return BizResult.create(picInputStream);
-    }
+    BizResult<InputStream> getPic(String fileId);
 
     /**
      * 删除图片
      * @param fileId 文件ID
      */
-    public BizResult<Boolean> deletePic(String fileId)
-    {
-        boolean deleteFlag = weedStorage.delete(fileId);
-
-        return BizResult.create(deleteFlag);
-    }
+    BizResult<Boolean> deletePic(String fileId);
 }
